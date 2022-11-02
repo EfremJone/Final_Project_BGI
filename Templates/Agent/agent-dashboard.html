@@ -14,7 +14,7 @@
   <section class="section dashboard">
     <div class="row">
       <!-- Left side columns -->
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-6">
         <div class="row">
 
           <!-- Sales Card -->
@@ -105,13 +105,13 @@
             </div>
           </div>
 
-          <div class="card top-selling overflow-auto">
-
-            {% block dashboard %}
-            <div class="card-body pb-0">
+          <div class="col-xxl-6 col-md-6 col-lg-12">
+            <div class="card top-selling overflow-auto">
+              {% block dashboard %}
+            <div class="card-body pb-0 col-md-6 col-sm-12 col-lg-12">
               <h5 class="card-title">My Customer</h5>
               <h6>
-                <table class="table table-border datatable">
+                <table class="table table-border datatable col-xxl-6 col-lg-12 col-md-6">
                   <thead>
                     <tr>
 
@@ -149,11 +149,14 @@
               </h6>
             </div>
             {% endblock dashboard %}
+
+              </div>
           </div>
+
         </div>
       </div>
 
-      <div class="col-lg-4">
+      <div class="col-lg-8 col-md-6">
 
         {% if adds%}
 
