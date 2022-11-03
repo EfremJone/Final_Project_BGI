@@ -19,14 +19,14 @@
             </div>
             {% endfor %}
             {% endif %}
-            <div class="card info-card customers-card">
+            <div class="card recent-sales overflow-auto">
               <h5 class="card-title">Set schedule for loading</h5>
               <table class="table table-border datatable" id="available">
+                                 
                 <thead>
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-
+                      
                       <th scope="col">Date</th>
                       <th scope="col">Agent</th>
                       <th scope="col">Order Code</th>
@@ -42,7 +42,7 @@
                   {% for transaction in all_tranaction %}
                   {% if transaction.Agent_order_id.status == 'Approved' %}
                   <tr>
-                    <th>{{transaction.id}}</th>
+                    
                     <td>{{transaction.date_created}}</td>
                     <td>{{transaction.Agent_order_id.Agent}}</td>
                     <td>{{transaction.TransactionCode}}</td>

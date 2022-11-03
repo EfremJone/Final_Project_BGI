@@ -14,6 +14,7 @@
 
             <!-- Pending orders Card -->
             <div class="col-xxl-4 col-md-6">
+              <a href="{% url 'customer_transactions' %}">
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">Pending</h5>
@@ -27,6 +28,7 @@
                   </div>
                 </div>
               </div>
+            </a>
             </div><!-- End Pending Card -->
 
             <!-- successful orders Card -->
@@ -81,8 +83,7 @@
                 </div>
               </div>
             </div><!-- End total spent Card -->
-
-            <div class="card info-card customers-card">
+            <div class="card  recent-sales overflow-auto">
               <h5 class="card-title">Recent purchases <span>| this week</span></h5>
               <table class="table table-border datatable" id="recent">
                 <thead>
@@ -128,7 +129,7 @@
           </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-12 col-sm-12">
 
           {% if adds%}
   

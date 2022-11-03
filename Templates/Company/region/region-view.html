@@ -30,15 +30,12 @@
 {% endfor %}
   <section class="section">
     <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
+      <div class="col">
+        <div class="card recent-sales overflow-auto">
           <div class="card-body">
-            <!-- Table with stripped rows -->
-
-            <table class="table datatable">
+            <table class="table table-border datatable">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Region Name</th>
                   <th scope="col">Date Created</th>
                   <th scope="col">Location</th>
@@ -48,11 +45,9 @@
               <tbody>
                 {% for region in all_region %}
                 <tr>
-                  <th scope="row">-></th>
                   <td>{{region.Region_Name}}</td>
                   <td>{{region.date_created}}</td>
                   <td>{{region.Location}}</td>
-                  
                   <td> <a href="#">
                     <h3 class="text-danger"><i class="bi bi-trash"></i></h3>
                   </a></td>

@@ -22,16 +22,16 @@
 
   {% endfor %}
   <section class="section add-agent">
-    <div class="row">
       <div class="row justify-content-center">
-        <div class="col-lg-12 d-flex flex-column align-items-center justify-content-center">
-          <div class="card mb-5">
+        <div class="col">
+          <div class="card recent-sales overflow-auto">
             <div class="card-body">
               <h5 class="card-title text-center pb-0 fs-4">Agent Registration orm</h5>
-              <div class="container  p-3 m-3">
+              <div class="container-fluid pt-2">
                 <form class="row g-3 " method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
-                  <div class="row border p-3 m-2">
+
+                  <div class="row border p-1 m-2">
                     <div class="col-md-6">
                       <label for="validationDefault01" class="form-label">First name:</label>
                       <input type="text" class="form-control " name="first_name" oninput="number_init(this.id)" id="fn"
@@ -111,6 +111,7 @@
                     </div>
                   </div>
 
+                  <div class="row border p-1 m-2">
                   <div class="col-md-6">
                     <label for="payment option" class="form-label">Region</label>
                     <select class="form-select" id="paymentchoosen" name="region">
@@ -122,7 +123,6 @@
 
                   </div>
 
-
                   <div class="col-md-6">
                     <label for="validationDefault03" class="form-label">City</label>
                     <input type="text" class="form-control" name="city" oninput="number_init(this.id)" required id="ct"
@@ -132,14 +132,11 @@
                   <div class="col-md-4">
                     <label for="validationDefault03" class="form-label">Address</label>
                     <input type="text" class="form-control" name="address" required id="address" value="{{address}}">
-
+                  </div>
                   </div>
                   <p id="paddrress" hidden></p>
-
-              </div>
-
-
-              <div class="row border p-2 m-2">
+             
+              <div class="row border p-1 m-2">
                 <div class="col-md-3">
                   <label for="validationDefault03" class="form-label">TIN No.</label>
                   <input type="text" class="form-control" name="TIN_NO" required oninput="letter_init(this.id)"
@@ -159,8 +156,7 @@
                   <input type="file" class="form-control" name="license" required value="{{license}}">
                 </div>
               </div>
-
-
+            </div>
               <div class="col-12">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" required>
@@ -172,9 +168,12 @@
               <hr>
               <input type="text" name="error" id="error" value="" hidden>
               <hr>
-              <div class="col-12">
+              <div class="d-grid gap-2 mt-3">
                 <button class="btn btn-warning" type="submit" onclick="add()">Add</button>
               </div>
+
+            
+
             </div>
             </form>
 

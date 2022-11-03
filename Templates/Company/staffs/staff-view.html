@@ -43,15 +43,14 @@
 
   <section class="section">
     <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <!-- Table with stripped rows -->
-
-            <table class="table datatable">
+   
+        <div class="col">
+          <div class="card recent-sales overflow-auto">
+            <div class="card-body">
+              <table class="table table-border datatable">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  
                   <th scope="col">Name</th>
                   <th scope="col">Position</th>
                   <th scope="col">Date</th>
@@ -62,7 +61,7 @@
               <tbody>
                 {% for staff in staff_finance_manager %}
                 <tr>
-                  <th scope="row">-></th>
+                  
                   <td><a href="{% url 'staff-detail' staff.id  staff.staff %}">{{staff.user.username}}</a></td>
                   <td>{{staff.staff}}</td>
                   <td>{{staff.date_created }}</td>
@@ -75,7 +74,7 @@
                 {% endfor %}
                 {% for staff in staff_company_store_manager %}
                 <tr>
-                  <th scope="row">-></th>
+                 
                   <td><a href="{% url 'staff-detail' staff.id staff.staff %}">{{staff.user.username}}</a></td>
                   <td>{{staff.staff}}</td>
                   <td>{{staff.date_created }}</td>

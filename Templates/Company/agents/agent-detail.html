@@ -120,16 +120,19 @@
         </div>
     
         <div class="col-12">
-          <div class="card">
+          <div class="card recent-sales overflow-auto">
             {% block admin %}
+
+           
+
+
             <div class="card-body">
               <h5 class="card-title">{{agent.Full_Name}}</h5>
               <!-- Table with stripped rows -->
               <table id="transaction_table" class="table table-border datatable">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-
+              
                     <th scope="col">Date</th>
                     <th scope="col">Order Code</th>
                     <th scope="col">Total paid</th>
@@ -143,7 +146,7 @@
 
                   {% for transaction in all_transaction %}
                   <tr>
-                    <th>-></th>
+                    
                     <td><a href="{% url 'transaction-detail' transaction.id %}">{{transaction.date_created}}</a></td>
                     <td>{{transaction.TransactionCode}}</td>
                     <td>{{transaction.Total_Amount}}</td>

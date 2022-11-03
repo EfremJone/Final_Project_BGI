@@ -1,7 +1,7 @@
-{% extends 'Company/company-base.html' %}
-{% block content %}
-<!-- ====== Main -->
-<main id="main" class="main">
+  <!-- ====== Main -->
+  {% extends 'Company/company-base.html'%}
+  {% block content%}
+  <main id="main" class="main">
   <div class="pagetitle">
     <h1>Manage Agents</h1>
     <nav>
@@ -31,53 +31,58 @@
   {% endif %}
   {% endfor %}
 
+  
+   
  
-  <section class="section">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <!-- Table with stripped rows -->
-            <table class="table datatable">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Agent</th>
-                  <th scope="col">Region</th>
-                  <th scope="col">City</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">date_created</th>
-                  <th scope="col">last_updated</th>
-                  <th scope="col">View</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for agent in all_agent %}
-                {% if agent.user.is_active%}
-                <tr>
-                  <th scope="row">1</th>
-                  <td><a href="{%  url 'agent-detail' agent.id  %}">{{agent.Full_Name}}</a></td>
-                  <td>{{agent.Region}}</td>
-                  <td>{{agent.city}}</td>
-                  <td>{{agent.phone1}}</td>
-                  <td>{{agent.date_created}}</td>
-                  <td>{{agent.last_updated}}</td>
-                  <td><a href="{% url 'agent-detail' agent.id %}">
-                      <h3><i class="bi bi-eye"></i></h3>
-                    </a></td>
+ <section class="section">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          
+          <div class="col">
+            <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                <table class="table table-border datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Agent</th>
+                      <th scope="col">Region</th>
+                      <th scope="col">City</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">date_created</th>
+                      <th scope="col">last_updated</th>
+                      <th scope="col">View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for agent in all_agent %}
+                    {% if agent.user.is_active%}
+                    <tr>
+                     
+                      <td><a href="{%  url 'agent-detail' agent.id  %}">{{agent.Full_Name}}</a></td>
+                      <td>{{agent.Region}}</td>
+                      <td>{{agent.city}}</td>
+                      <td>{{agent.phone1}}</td>
+                      <td>{{agent.date_created}}</td>
+                      <td>{{agent.last_updated}}</td>
+                      <td><a href="{% url 'agent-detail' agent.id %}">
+                          <h3><i class="bi bi-eye"></i></h3>
+                        </a></td>
+    
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+         
+              
+              <!-- End Table with stripped rows -->
 
-                </tr>
-                {% endif %}
-                {% endfor %}
-              </tbody>
-            </table>
-            <!-- End Table with stripped rows -->
-
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
 </main>
 {% endblock %}
