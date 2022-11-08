@@ -89,6 +89,8 @@ urlpatterns = [
 
     path('view_region/', views.view_region, name='view-region'),
     path('add_region/', views.add_region, name='add-region'),
+    path('detail_region/<int:pk>', views.RegionDetail, name='detail-region'),
+    
 
     # endregion part
 
@@ -113,6 +115,7 @@ urlpatterns = [
 
     # Report
     path('view_report/', views.view_report, name='view-report'),
+    path('Store_Refill_Report/', views.storeRefillReport, name='Store_Refill_Report'),
 
     # END Report
 

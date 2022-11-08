@@ -554,9 +554,9 @@ def order_summer(request):
                 obj = {
                     
                     "process": "Cart",
-                    "successUrl": "http://192.168.137.101:8002/Agent/success/",
-                    "ipnUrl": "http://192.168.137.101:8002/Agent/ipn",
-                    "cancelUrl": "http://192.168.137.101:8002/Agent/cancel",
+                    "successUrl": "http://192.168.1.128:8002/Agent/success/",
+                    "ipnUrl": "http://192.168.137.76:8002/Agent/ipn",
+                    "cancelUrl": "http://192.168.137.76:8002/Agent/cancel",
                     "merchantId": "SB1560",
                     "merchantOrderId": ag.id,
                     "expiresAfter": 24,
@@ -1228,7 +1228,7 @@ def cusomer_order_ditel_driver(request, pk):
                                  getattr(order, product.Product_Name))
 
                 total_quantity += (getattr(order, product.Product_Name))
-            data = zip(prods, price, quantity, sub_total)
+            data = zip(prods, quantity)
             context = {
                 'transaction': transaction,
                 'data': data,

@@ -45,7 +45,7 @@
               <tbody>
                 {% for region in all_region %}
                 <tr>
-                  <td>{{region.Region_Name}}</td>
+                  <td><a href="{% url 'detail-region' region.id %}">{{region.Region_Name}}</a></td>
                   <td>{{region.date_created}}</td>
                   <td>{{region.Location}}</td>
                   <td> <a href="#">

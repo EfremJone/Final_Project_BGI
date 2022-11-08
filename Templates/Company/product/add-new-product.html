@@ -3,18 +3,15 @@
   {% block content%}
     <main id="main" class="main">
       <div class="pagetitle">
-        <h1>Manage products</h1>
+        <h1>Add New products</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'admin-dashbord' %}">Home</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'view-product' %}">Manage products</a></li>
             <li class="breadcrumb-item active">Add products</li>
           </ol>
-         
-          
         </nav>
-        
       </div><!-- End Page Title -->
-  
     <section class="section add-agent">
         <div class="row">
           <div class="row justify-content-center">
@@ -38,17 +35,11 @@
 
                       <div class="col-lg-6 col-md-6 col-sm-12">
                         <label for="single price" class="form-label">Single Price</label>
-                        <input type="number" name="single_price" class="form-control" id="single_price" required>
+                        <input type="number" step=0.01 name="single_price" class="form-control" id="single_price" required>
                         <div class="invalid-feedback">Please, provide price for single bottle</div>
                       </div>
-
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <label for="crate price" class="form-label">Crate Price</label>
-                        <input type="number" name="crate_price" class="form-control" id="crate_price" required>
-                        <div class="invalid-feedback">Please, provide price for a whole crate of beer</div>
-                      </div>
-
-                      <div class="col-4">
+                      
+                      <div class="col-12 ">
                         <button id="add_product_btn" onclick="addProduct()" type="submit" class="btn btn-warning w-100">Add</button>
                       </div>
                   </form>

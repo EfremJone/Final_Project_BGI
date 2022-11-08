@@ -461,9 +461,9 @@ def order_summer(request):
 
                 obj = {
                     "process": "Cart",
-                    "successUrl": "http://192.168.137.101:8002/Customer/success/",
-                    "ipnUrl": "http://192.168.137.101:8002/Customer/ipn",
-                    "cancelUrl": "http://192.168.137.101:8002/Customer/cancel",
+                    "successUrl": "http://192.168.137.76:8002/Customer/success/",
+                    "ipnUrl": "http://192.168.137.76:8002/Customer/ipn",
+                    "cancelUrl": "http://192.168.137.76:8002/Customer/cancel",
                     "merchantId": "SB1560",
                     "merchantOrderId": ag.id,
                     "expiresAfter": 24,

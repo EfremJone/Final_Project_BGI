@@ -25,6 +25,7 @@ class Region(models.Model):
     Region_Name=models.CharField(max_length=100,blank=True, null=True)
     Location = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    coverArea = models.CharField(max_length=2000,null=True,blank=True)
     def __str__(self) -> str:
         return self.Region_Name
 	

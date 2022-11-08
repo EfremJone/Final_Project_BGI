@@ -67,11 +67,9 @@
                       <p>30 min. ago</p>
                     </div>
                   </li>
-      
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-      
                   <li class="notification-item">
                     <i class="bi bi-x-circle text-danger"></i>
                     <div>
@@ -80,11 +78,9 @@
                       <p>1 hr. ago</p>
                     </div>
                   </li>
-      
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-      
                   <li class="notification-item">
                     <i class="bi bi-check-circle text-success"></i>
                     <div>
@@ -93,11 +89,9 @@
                       <p>2 hrs. ago</p>
                     </div>
                   </li>
-      
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-      
                   <li class="notification-item">
                     <i class="bi bi-info-circle text-primary"></i>
                     <div>
@@ -106,25 +100,19 @@
                       <p>4 hrs. ago</p>
                     </div>
                   </li>
-      
                   <li>
                     <hr class="dropdown-divider">
                   </li>
                   <li class="dropdown-footer">
                     <a href="#">Show all notifications</a>
                   </li>
-      
                 </ul><!-- End Notification Dropdown Items -->
-      
               </li><!-- End Notification Nav -->
-      
               <li class="nav-item dropdown">
-      
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                   <i class="bi bi-chat-left-text"></i>
                   <span class="badge bg-success badge-number">3</span>
                 </a><!-- End Messages Icon -->
-      
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                   <li class="dropdown-header">
                     You have 3 new messages
@@ -133,7 +121,6 @@
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-      
                   <li class="message-item">
                     <a href="#">
                       <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
@@ -147,7 +134,6 @@
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-      
                   <li class="message-item">
                     <a href="#">
                       <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
@@ -161,7 +147,6 @@
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-      
                   <li class="message-item">
                     <a href="#">
                       <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
@@ -175,43 +160,32 @@
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-      
                   <li class="dropdown-footer">
                     <a href="#">Show all messages</a>
                   </li>
-      
                 </ul><!-- End Messages Dropdown Items -->
-      
-              </li><!-- End Messages Nav --
-              
+              </li>
               <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="{% static 'assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">{{user.first_name}} {{user.last_name}}</span>
-                </a><!-- End Profile Iamge Icon -->
-
+                </a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
                         <h6>{{user.username}} </h6>
                         <span>Driver</span>
                     </li>
-
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-
-                    
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
                     </li>
-
                 </ul><!-- End Profile Dropdown Items -->
               </li>
-                
-        
              </ul>
                 <!-- End Profile Dropdown Items -->
               </li><!-- End Profile Nav -->
@@ -222,109 +196,67 @@
     </header><!-- End Header -->
 {% block content%}
     <!-- ====== Main -->
-  
     <main class="mt-5 pt-4">
         <div class="container">
             <section class="section dashboard">
                 <div class="row">
                     <!-- Left side columns -->
                     <div class="col-lg-12">
+                      <div class="row">
+                        <div class="col-lg-10 col-md-8"></div>
+                        <div class="col-lg-2 col-md-4">
+                        <div class="card bg-light">
+                          <div class="card-body text-end">
+                            <br>
+                              <button id="download_excel" type="button" class="btn btn-secondary btn-sm">Excel</button>
+                              <button id="download_pdf" onclick="pdfDwnld()" type="button" class="btn btn-secondary btn-sm">Pdf</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                         <div class="row">
-
                             <div class="card recent-sales overflow-auto ">
                                 <h5 class="card-title text-center">Orders</h5>
-                               <table class="table data-border datatable">
+                               <table id="transaction_table" class="table data-border datatable">
                     <thead>
                       <tr>
-
                         <th scope="col">Date</th>
                         <th scope="col">Customer</th>
                         <th scope="col">Address</th>
                         <th scope="col">House No.</th>
                         <th scope="col">Order Code</th>
                         <th scope="col">Status</th>
-
                         <th scope="col">Check silp</th>
-
                       </tr>
                     </thead>
                     <tbody>
-
-
                       {%for row1 , row2 in data %}
-
-                      {% if row1.status == 'Pending' %}
                       <tr>
-
                         <td>{{row1.date_created}}</td>
                         <td class="text-primary">{{row1.Customer}}</td>
                         <td>{{row1.Customer.Address}}</a></td>
                         <td>{{row1.Customer.House_No}}</td>
                         <td>{{row2.TransactionCode}}</td>
+                        {% if row1.status == 'Pending' %}
                         <td><span class="badge bg-warning">Pending</span></td>
+                        {% endif %}
+                        {% if row1.status == 'Not Recived' %}
+                        <td><span class="badge bg-danger">Not Delivered</span></td>
+                        {% endif %}
+                        {% if row1.status == 'Delivered' %}
+                        <td><span class="badge bg-success">Delivered</span></td>
+                        {% endif %}
                         <td><a href="{% url 'cusomer_order_ditel_driver' row2.id %}" class="btn btn-sm btn-primary">View</a>
                         </td>
-
-            
-
                       </tr>
-                      {% endif %}
-
                       {% endfor %}
-
-                      <!-- <tr>
-                        <th>4</th>
-                        <td>23-1-2022</td>
-                        <td class="text-primary">Mesfin Kurs Bet</td>
-                        <td>Franko</a></td>
-                        <td>9434563</td>
-                        <td>AK784TG</td>
-                        <td>1986 ETB</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                        <td><button class="btn btn-sm btn-primary">View</button></td>
-                        <td><span class="badge bg-primary">Assigned</span></td>
-          
-                      </tr>
-                      <tr>
-                        <th>4</th>
-                        <td>23-1-2022</td>
-                        <td class="text-primary">Mesfin Kurs Bet</td>
-                        <td>Franko</a></td>
-                        <td>9434563</td>
-                        <td>AK784TG</td>
-                        <td>1986 ETB</td>
-                        <td><span class="badge bg-success">delivered</span></td>
-                        <td><button class="btn btn-sm btn-primary">View</button></td>
-                        <td><span class="badge bg-primary">Assigned</span></td>
-          
-          
-                      </tr>
-                      <tr>
-                        <th>4</th>
-                        <td>23-1-2022</td>
-                        <td class="text-primary">Mesfin Kurs Bet</td>
-                        <td>Franko</a></td>
-                        <td>9434563</td>
-                        <td>AK784TG</td>
-                        <td>1986 ETB</td>
-                        <td><span class="badge bg-danger">Not delivered</span></td>
-                        <td><button class="btn btn-sm btn-primary">View</button></td>
-                        <td><span class="badge bg-primary">Assigned</span></td>
-          
-          
-                      </tr>
-           -->
-
-
                     </tbody>
                   </table>
                             </div>
                         </div>
                     </div>
-
                 </div><!-- End Recent Activity -->
         </div><!-- End Right side columns -->
-
         </div>
         </section>
         </div>
@@ -342,7 +274,7 @@
         <i class="bi bi-arrow-up-short"></i>
     </a>
 
-    <<script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/chart.js/chart.min.js' %}"></script>
     <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
@@ -362,30 +294,31 @@
     <script src="{% static 'assets/js/table2excel.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script>
-        function approved() {
-            swal({
-                title: "Are you sure?",
-                text: "Once approved, you will not be able to undo the action!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal("Agent order successfully approved", {
-                            icon: "success",
-                        });
-                    } else {
-                        swal("You can re-schedule");
-                    }
-                });
-        }
+      document.getElementById('download_excel').addEventListener('click', function () {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#transaction_table"));
+      });  
     </script>
-    <script>
-        function rejected() {
-            swal("Continue to reject", "...you can either re-schedule!");
-        }
+    
+    <script type="text/javascript">
+      function pdfDwnld() {
+        html2canvas(document.getElementById('transaction_table'), {
+          onrendered: function (canvas) {
+            var data = canvas.toDataURL();
+            var docDefinition = {
+              content: [{
+                image: data,
+                width: 500
+              }]
+            };
+            pdfMake.createPdf(docDefinition).download("Table.pdf");
+          }
+        });
+      }
     </script>
+    
 </body>
+
+
 
 </html>

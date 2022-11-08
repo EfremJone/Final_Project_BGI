@@ -993,8 +993,9 @@ def add_region(request):
             if request.method == 'POST':
                 region_name = request.POST.get('name')
                 location = request.POST.get('location')
+                address = request.POST.get('address')
                 region = Region.objects.create(
-                    Region_Name=region_name, Location=location)
+                    Region_Name=region_name, Location=location,coverArea=address)
                 if region:
                     messages.success(request, 'Region successfully Added')
                     return redirect('view-region')
@@ -1012,6 +1013,26 @@ def add_region(request):
     except IndexError as e:
         messages.error(request, 'Login Before ')
         return redirect('logout')
+def RegionDetail(request,pk):
+    Searached_Region = Region.objects.get(id=pk)
+    all_Agent=Agent.objects.filter(Region=Searached_Region)
+    Total_Agent = all_Agent.count()
+    agents=[]
+    link ="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d170981.76251837067!2d39.00679496037457!3d8.550333049657196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b1f65036ecb0f%3A0x6babded8f5e67ef6!2sAdama!5e0!3m2!1sen!2set!4v1667920771437!5m2!1sen!2set"
+    for agent in all_Agent:
+        agents.append(agent)
+    total_Cust =0
+    for agent in agents:
+        all_cust=Customer.objects.filter(Agent=agent)
+        total_Cust+=all_cust.count()
+    context = {
+          'region':Searached_Region,
+          'all_Agent':all_Agent,
+          'Total_Agent':Total_Agent,
+          'Total_Customer':total_Cust,
+          'link':link,
+    }
+    return render(request,'Company/region/regionDetail.html',context)
 
 # end Region
 
@@ -1041,7 +1062,9 @@ def add_product(request):
                 Product_Name = request.POST['product_name']
                 img = request.FILES['add_image']
                 Price_in_botle = request.POST['single_price']
-                Price_in_creates = request.POST['crate_price']
+                pict=float(Price_in_botle)*24
+
+                Price_in_creates = pict
                 Product.objects.create(Product_Name=Product_Name, img=img,
                                        Price_in_botle=Price_in_botle, Price_in_creates=Price_in_creates)
                 Customer_order.add_to_class(
@@ -1087,7 +1110,8 @@ def update_product(request, pk):
             if request.method == 'POST':
                 product.Product_Name = request.POST['product_name']
                 product.Price_in_botle = request.POST['single_price']
-                product.Price_in_creates = request.POST['crate_price']
+                pict=float(product.Price_in_botle)*24
+                product.Price_in_creates = pict
                 product.save()
                 messages.info(request, 'Product Successfully Updated')
                 return redirect('view-product')
@@ -1506,7 +1530,13 @@ def view_report(request):
         'all_tran': all_tran,
     }
     return render(request, 'Company/report/generate-report.html', context)
-
+def storeRefillReport(request):
+    RecentRefill = add_to_store.objects.all().order_by('-date_created')
+    context = {
+        'RecentRefill':RecentRefill
+    }
+    
+    return render(request,'Company/report/StoreRefill.html',context )
 # END Report
 
 #  Finance admin
